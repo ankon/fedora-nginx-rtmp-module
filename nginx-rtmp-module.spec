@@ -33,7 +33,9 @@ BuildRequires:  nginx-mod-devel
 %install
 install -p -d -m 0755 %{buildroot}%{nginx_modconfdir}
 install -p -d -m 0755 %{buildroot}%{nginx_moddir}
+install -p -d -m 0755 %{buildroot}%{_datadir}/nginx/rtmp
 install -p -m 0755 %{_vpath_builddir}/ngx_rtmp_module.so %{buildroot}%{nginx_moddir}
+install -p -m 0644 stat.xsl %{buildroot}%{_datadir}/nginx/rtmp
 
 echo 'load_module "%{nginx_moddir}/ngx_rtmp_module.so";' \
     > %{buildroot}%{nginx_modconfdir}/mod-rtmp.conf
@@ -60,6 +62,7 @@ fi
 %doc doc/*.md
 %{nginx_modconfdir}/mod-rtmp.conf
 %{nginx_moddir}/ngx_rtmp_module.so
+%{_datadir}/nginx/rtmp/stat.xsl
 
 %changelog
 * Sun Mar 26 2023 Andreas Kohn <andreas.kohn@gmail.com>
